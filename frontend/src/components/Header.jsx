@@ -1,0 +1,102 @@
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+
+export const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Portfolio', path: '/portfolio' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'CashCue AI', path: '/ai-waitlist' }
+  ];
+
+  return (
+    <header 
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-black/90 backdrop-blur-lg border-b border-white/25' : 'bg-transparent'
+      }`}
+      style={{
+        padding: '16px 7.6923%',
+        height: '80px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}
+    >
+      {/* Logo */}
+      <Link to="/" className="flex items-center">
+        <div className="text-2xl font-bold text-white">
+          Cash<span style={{ color: 'var(--brand-primary)' }}>Cue</span>
+        </div>
+      </Link>
+
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex items-center gap-8">
+        {navItems.map((item) => (
+          <Link
+            key={item.name}
+            to={item.path}
+            className={`text-lg font-medium transition-colors duration-300 hover:text-white ${
+              location.pathname === item.path
+                ? 'text-white border-b-2'
+                : 'text-gray-400'
+            }`}
+            style={{
+              borderBottomColor: location.pathname === item.path ? 'var(--brand-primary)' : 'transparent'
+            }}
+          >
+            {item.name}
+          </Link>
+        ))}
+      </nav>
+
+      {/* Mobile Menu Button */}
+      <button
+        className="md:hidden text-white hover:text-gray-300 transition-colors"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-lg border-b border-white/25 md:hidden">
+          <nav className="flex flex-col p-6 space-y-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`text-lg font-medium transition-colors duration-300 hover:text-white ${
+                  location.pathname === item.path
+                    ? 'text-white'
+                    : 'text-gray-400'
+                }`}
+                style={{
+                  color: location.pathname === item.path ? 'var(--brand-primary)' : undefined
+                }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
