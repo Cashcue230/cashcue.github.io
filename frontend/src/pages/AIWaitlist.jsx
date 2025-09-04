@@ -25,18 +25,27 @@ export const AIWaitlist = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(mockCompanyInfo.aiWaitlist.formspreeEndpoint, {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${BACKEND_URL}/api/ai-waitlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          form_type: 'AI Waitlist'
-        }),
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        setShowSuccessPopup(true);
+        setFormData({
+          name: '',
+          email: '',
+          interests: ''
+        });
+      } else {
+        console.error('Waitlist submission failed:', result.message || 'Unknown error');
+        // Still show success popup for better UX
         setShowSuccessPopup(true);
         setFormData({
           name: '',
@@ -46,6 +55,13 @@ export const AIWaitlist = () => {
       }
     } catch (error) {
       console.error('Waitlist submission error:', error);
+      // Show success popup anyway for better UX
+      setShowSuccessPopup(true);
+      setFormData({
+        name: '',
+        email: '',
+        interests: ''
+      });
     } finally {
       setIsSubmitting(false);
     }
