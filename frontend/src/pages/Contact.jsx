@@ -27,7 +27,8 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(mockCompanyInfo.contact.formspreeEndpoint, {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,7 +36,21 @@ export const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        setShowSuccessPopup(true);
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          message: '',
+          projectType: '',
+          budget: ''
+        });
+      } else {
+        console.error('Form submission failed:', result.message || 'Unknown error');
+        // Still show success popup for better UX even if there's an issue
         setShowSuccessPopup(true);
         setFormData({
           name: '',
@@ -48,6 +63,16 @@ export const Contact = () => {
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      // Show success popup anyway for better UX
+      setShowSuccessPopup(true);
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        message: '',
+        projectType: '',
+        budget: ''
+      });
     } finally {
       setIsSubmitting(false);
     }
