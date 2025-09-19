@@ -40,6 +40,7 @@ export const Header = () => {
     >
       {/* Logo */}
       <Link to="/" className="flex items-center">
+        <img src="/2bd68bb7-0cd1-4c35-841e-3668322ca5a0_removalai_preview.png" alt="CashCue Logo" className="h-10 mr-1" />
         <div className="text-2xl font-bold text-white">
           Cash<span style={{ color: 'var(--brand-primary)' }}>Cue</span>
         </div>

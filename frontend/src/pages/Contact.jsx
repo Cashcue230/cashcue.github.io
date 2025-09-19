@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, MessageCircle, MapPin, Phone, Send, CheckCircle } from 'lucide-react';
 import { mockCompanyInfo } from '../mock';
+import { submitContactForm } from '../Api';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -27,18 +28,9 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-      const response = await fetch(`${BACKEND_URL}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const result = await submitContactForm(formData);
 
-      const result = await response.json();
-      
-      if (response.ok && result.success) {
+      if (result.success) {
         setShowSuccessPopup(true);
         setFormData({
           name: '',

@@ -1,30 +1,82 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { FloatingHireButton } from "./components/FloatingHireButton";
-import { Home } from "./pages/Home";
-import { Services } from "./pages/Services";
-import { Portfolio } from "./pages/Portfolio";
-import { About } from "./pages/About";
-import { Contact } from "./pages/Contact";
-import { AIWaitlist } from "./pages/AIWaitlist";
+import { ScrollToTop } from "./components/ScrollToTop";
+import { LoadingScreen } from "./components/LoadingScreen";
+import { RouteChangeLoader } from "./components/RouteChangeLoader";
+import NetworkGuard from "./components/NetworkGuard";
+
+const Home = lazy(() => import("./pages/Home").then(module => ({ default: module.Home })));
+const Services = lazy(() => import("./pages/Services").then(module => ({ default: module.Services })));
+const Portfolio = lazy(() => import("./pages/Portfolio").then(module => ({ default: module.Portfolio })));
+const About = lazy(() => import("./pages/About").then(module => ({ default: module.About })));
+const Contact = lazy(() => import("./pages/Contact").then(module => ({ default: module.Contact })));
+const AIWaitlist = lazy(() => import("./pages/AIWaitlist").then(module => ({ default: module.AIWaitlist })));
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/ai-waitlist" element={<AIWaitlist />} />
-          </Routes>
+          <NetworkGuard>
+            <RouteChangeLoader>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Suspense fallback={<LoadingScreen page="home" />}>
+                      <Home />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/services"
+                  element={
+                    <Suspense fallback={<LoadingScreen page="services" />}>
+                      <Services />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/portfolio"
+                  element={
+                    <Suspense fallback={<LoadingScreen page="portfolio" />}>
+                      <Portfolio />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/about"
+                  element={
+                    <Suspense fallback={<LoadingScreen page="about" />}>
+                      <About />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/contact"
+                  element={
+                    <Suspense fallback={<LoadingScreen page="contact" />}>
+                      <Contact />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/ai-waitlist"
+                  element={
+                    <Suspense fallback={<LoadingScreen page="ai-waitlist" />}>
+                      <AIWaitlist />
+                    </Suspense>
+                  }
+                />
+              </Routes>
+            </RouteChangeLoader>
+          </NetworkGuard>
         </main>
         <Footer />
         <FloatingHireButton />

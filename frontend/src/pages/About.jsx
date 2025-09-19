@@ -12,10 +12,10 @@ export const About = () => {
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
     },
     {
-      name: "Sarah Johnson",
+      name: "Henry Wilson",
       role: "Creative Director",
       expertise: "3D Animation, Visual Design",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3w5MTMyfDB8MHx8d29tYW4gY29tcHV0ZXJ8fDB8fHx8MTcxMDY5MzYyNw&w=400&h=400&fit=crop&crop=faces"
     },
     {
       name: "Marcus Rodriguez",

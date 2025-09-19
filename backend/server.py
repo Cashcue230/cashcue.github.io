@@ -9,17 +9,23 @@ from pydantic import BaseModel, Field
 from typing import List
 import uuid
 from datetime import datetime
+import logging
 
-# Import the forms router
-from routes.forms import router as forms_router
-
+logging.basicConfig(
+    level=logging.DEBUG,  # 👈 show full debug logs
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+)
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
+# MongoDB connection setup
+MONGO_URL = os.getenv("MONGO_URL","mongodb+srv://cashcue001_db_user:JSSF4p6Tpl78HDwT@cluster0.vmuopb4.mongodb.net/cashcue?retryWrites=true&w=majority")
+DB_NAME = os.getenv("DB_NAME", "cashcue")
+client = AsyncIOMotorClient(MONGO_URL)
+db = client[DB_NAME]
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# Import forms and initialize services
+from routes import forms
+
 
 # Create the main app without a prefix
 app = FastAPI(title="CashCue API", version="1.0.0")
@@ -55,13 +61,12 @@ async def get_status_checks():
 
 # Health check endpoint (no prefix)
 @app.get("/health")
+@app.get("/health")
 async def health_check():
-    return {"status": "healthy", "service": "CashCue API"}
+    return {"status": "ok"}
 
-# Include all routers
 app.include_router(api_router)  # Existing routes
-app.include_router(forms_router)  # New forms routes
-
+app.include_router(forms.router)  # New forms routes
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
@@ -86,3 +91,10 @@ async def startup_event():
 async def shutdown_db_client():
     logger.info("CashCue API shutting down...")
     client.close()
+
+# Add this block to run with uvicorn
+import uvicorn
+
+if __name__ == "__main__":
+    uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=True)
+    # No additional code needed; the script already contains the correct uvicorn run block.

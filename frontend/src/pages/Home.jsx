@@ -8,13 +8,11 @@ export const Home = () => {
   const heroRef = useRef(null);
 
   useEffect(() => {
-    // Cursor following effect for the robot
+    // Cursor following effect for the robot - TODO: implement
     const handleMouseMove = (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      
-      // This will be enhanced with actual Spline interaction
-      console.log('Cursor position:', { x, y });
+      // TODO: implement robot following cursor
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -31,14 +29,16 @@ export const Home = () => {
   return (
     <div className="dark-container">
       {/* Hero Section with 3D Robot */}
-      <section ref={heroRef} className="min-h-screen flex items-center relative overflow-hidden" style={{ paddingTop: '80px' }}>
+      <section
+        ref={heroRef}
+        className="min-h-screen flex items-center relative overflow-hidden"
+        style={{ paddingTop: '80px' }}
+      >
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div>
-              <h1 className="display-huge mb-6">
-                {mockCompanyInfo.tagline}
-              </h1>
+              <h1 className="display-huge mb-6">{mockCompanyInfo.tagline}</h1>
               <p className="body-large mb-8 text-gray-300">
                 {mockCompanyInfo.description}
               </p>
@@ -48,7 +48,10 @@ export const Home = () => {
                   className="btn-primary group"
                 >
                   Start Your Project
-                  <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+                  <ArrowRight
+                    size={20}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
                 </button>
                 <Link to="/portfolio" className="btn-secondary">
                   View Our Work
@@ -58,22 +61,19 @@ export const Home = () => {
 
             {/* Right - 3D Robot */}
             <div className="relative h-[700px] w-full">
-              <div 
-                style={{ 
-                  width: "700px", 
-                  height: "700px", 
-                  overflow: "visible", 
-                  position: "relative",
-                  left: "50%",
-                  transform: "translateX(-50%)"
+              <div
+                style={{
+                  width: '700px',
+                  height: '700px',
+                  overflow: 'visible',
+                  position: 'relative',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
                 }}
               >
-                <Spline 
-                  scene="https://prod.spline.design/NbVmy6DPLhY-5Lvg/scene.splinecode"
-                  style={{
-                    width: "100%",
-                    height: "100%"
-                  }}
+                <Spline
+                  scene="https://prod.spline.design/5BaCINZL6ANi6wdZ/scene.splinecode"
+                  style={{ width: '100%', height: '100%' }}
                 />
               </div>
             </div>
@@ -94,7 +94,8 @@ export const Home = () => {
           <div className="text-center mb-16">
             <h2 className="display-medium mb-6">What We Create</h2>
             <p className="body-large text-gray-400 max-w-3xl mx-auto">
-              We specialize in building cutting-edge digital experiences that push the boundaries of what's possible on the web.
+              We specialize in building cutting-edge digital experiences that
+              push the boundaries of what's possible on the web.
             </p>
           </div>
 
@@ -106,13 +107,29 @@ export const Home = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="mb-4">
-                  {index === 0 && <Zap size={32} style={{ color: 'var(--brand-primary)' }} />}
-                  {index === 1 && <Rocket size={32} style={{ color: 'var(--brand-primary)' }} />}
-                  {index === 2 && <Star size={32} style={{ color: 'var(--brand-primary)' }} />}
-                  {index === 3 && <ArrowRight size={32} style={{ color: 'var(--brand-primary)' }} />}
+                  {index === 0 && (
+                    <Zap size={32} style={{ color: 'var(--brand-primary)' }} />
+                  )}
+                  {index === 1 && (
+                    <Rocket
+                      size={32}
+                      style={{ color: 'var(--brand-primary)' }}
+                    />
+                  )}
+                  {index === 2 && (
+                    <Star size={32} style={{ color: 'var(--brand-primary)' }} />
+                  )}
+                  {index === 3 && (
+                    <ArrowRight
+                      size={32}
+                      style={{ color: 'var(--brand-primary)' }}
+                    />
+                  )}
                 </div>
                 <h3 className="heading-3 mb-3">{service.title}</h3>
-                <p className="body-small text-gray-400 mb-4">{service.description}</p>
+                <p className="body-small text-gray-400 mb-4">
+                  {service.description}
+                </p>
                 <div className="space-y-1">
                   {service.features.slice(0, 2).map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
@@ -140,7 +157,8 @@ export const Home = () => {
           <div className="text-center mb-16">
             <h2 className="display-medium mb-6">What Our Clients Say</h2>
             <p className="body-large text-gray-400">
-              Don't just take our word for it — see what our clients think about working with CashCue.
+              Don't just take our word for it — see what our clients think about
+              working with CashCue.
             </p>
           </div>
 
@@ -153,7 +171,12 @@ export const Home = () => {
               >
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={16} fill="currentColor" style={{ color: 'var(--brand-primary)' }} />
+                    <Star
+                      key={i}
+                      size={16}
+                      fill="currentColor"
+                      style={{ color: 'var(--brand-primary)' }}
+                    />
                   ))}
                 </div>
                 <p className="body-medium text-gray-300 mb-6 leading-relaxed">
@@ -161,7 +184,9 @@ export const Home = () => {
                 </p>
                 <div>
                   <p className="heading-3 mb-1">{testimonial.name}</p>
-                  <p className="body-small text-gray-400">{testimonial.role} at {testimonial.company}</p>
+                  <p className="body-small text-gray-400">
+                    {testimonial.role} at {testimonial.company}
+                  </p>
                 </div>
               </div>
             ))}
@@ -172,9 +197,12 @@ export const Home = () => {
       {/* CTA Section */}
       <section id="contact-section" className="py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="display-medium mb-6">Ready to Build Something Amazing?</h2>
+          <h2 className="display-medium mb-6">
+            Ready to Build Something Amazing?
+          </h2>
           <p className="body-large text-gray-400 mb-8">
-            Let's create a futuristic website that sets your business apart from the competition.
+            Let's create a futuristic website that sets your business apart from
+            the competition.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="btn-primary">

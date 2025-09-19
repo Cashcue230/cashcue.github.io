@@ -40,7 +40,7 @@ class DatabaseService:
         return False
 
     async def update_contact_formspree_status(self, submission_id: str, status: str):
-        await self.contact_collection.update_one({"id": submission_id}, {"$set": {"formspree_status": status}})
+        await self.contact_collection.update_one({"_id": ObjectId(submission_id)}, {"$set": {"formspree_status": status}})
 
     async def update_waitlist_formspree_status(self, submission_id: str, status: str):
-        await self.waitlist_collection.update_one({"id": submission_id}, {"$set": {"formspree_status": status}})
+        await self.waitlist_collection.update_one({"_id": ObjectId(submission_id)}, {"$set": {"formspree_status": status}})

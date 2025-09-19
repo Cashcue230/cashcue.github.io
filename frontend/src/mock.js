@@ -69,12 +69,12 @@ export const mockProjects = [
     tech: ["React", "Three.js", "GSAP"]
   },
   {
-    id: 6,
-    title: "Healthcare Platform",
-    description: "Clean and professional healthcare platform with focus on accessibility and user experience.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
-    category: "Healthcare",
-    tech: ["Angular", "Node.js", "MongoDB"]
+  id: 6,
+   title: "Healthcare Platform",
+   description: "Clean and professional healthcare platform with focus on accessibility and user experience.",
+   image: "https://images.unsplash.com/photo-1598257006626-48b0c252070d?w=800&h=600&fit=crop",
+   category: "Healthcare",
+   tech: ["Angular", "Node.js", "MongoDB"]
   }
 ];
 

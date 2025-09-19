@@ -30,9 +30,9 @@ export const Portfolio = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 border border-white/20 transition-all duration-300 ${
+              className={`px-6 py-3 border border-white/20 transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-brand-primary text-black border-brand-primary'
+                    ? 'bg-brand-primary text-white border-brand-primary'
                     : 'bg-transparent text-white hover:border-brand-primary/50 hover:text-brand-primary'
                 }`}
               >
@@ -134,7 +134,7 @@ export const Portfolio = () => {
                 "Working with CashCue was an incredible experience. They delivered a website that exceeded our expectations and perfectly captured our brand's futuristic vision."
               </p>
               <div>
-                <p className="heading-3 mb-1">Alex Thompson</p>
+                <p className="heading-3 mb-1">TBMINER</p>
                 <p className="body-small text-gray-400">CEO, TechVision Inc.</p>
               </div>
             </div>

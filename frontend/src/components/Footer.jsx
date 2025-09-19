@@ -11,9 +11,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="text-2xl font-bold text-white mb-4">
+          <div className="flex items-center text-2xl font-bold text-white mb-4">
+            <img src="/2bd68bb7-0cd1-4c35-841e-3668322ca5a0_removalai_preview.png" alt="CashCue Logo" className="h-10 mr-1 inline-block align-middle" />
+            <span>
               Cash<span style={{ color: 'var(--brand-primary)' }}>Cue</span>
-            </div>
+            </span>
+          </div>
             <p className="body-medium text-gray-400 mb-6 max-w-md">
               We don't just build websites — we create futuristic experiences that attract, engage, and convert.
             </p>
