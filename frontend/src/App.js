@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { FloatingHireButton } from "./components/FloatingHireButton";
@@ -19,7 +19,7 @@ const AIWaitlist = lazy(() => import("./pages/AIWaitlist").then(module => ({ def
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <ScrollToTop />
         <Header />
         <main>
@@ -80,7 +80,7 @@ function App() {
         </main>
         <Footer />
         <FloatingHireButton />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
