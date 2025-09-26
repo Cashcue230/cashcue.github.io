@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MessageCircle, ExternalLink } from 'lucide-react';
+import SocialIcons from './SocialIcons';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -50,7 +51,9 @@ export const Footer = () => {
                 { name: 'Home', path: '/' },
                 { name: 'Services', path: '/services' },
                 { name: 'Portfolio', path: '/portfolio' },
-                { name: 'About', path: '/about' }
+                { name: 'About', path: '/about' },
+                { name: 'Contact', path: '/contact' },
+                { name: 'CashCue AI Waitlist', path: '/ai-waitlist' }
               ].map((item) => (
                 <li key={item.name}>
                   <Link
@@ -85,18 +88,11 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/25 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="body-small text-gray-400">
+        <div className="border-t border-white/25 mt-12 pt-8 flex flex-col items-center text-center">
+          <p className="body-small text-gray-400 mb-4">
             © {currentYear} CashCue. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="/contact" className="body-small text-gray-400 hover:text-white transition-colors">
-              Contact
-            </Link>
-            <Link to="/ai-waitlist" className="body-small text-gray-400 hover:text-white transition-colors">
-              CashCue AI Waitlist
-            </Link>
-          </div>
+          <SocialIcons />
         </div>
       </div>
     </footer>

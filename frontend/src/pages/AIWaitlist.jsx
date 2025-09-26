@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Spline from '@splinetool/react-spline';
+import ResponsiveSpline from '../components/ResponsiveSpline';
 import { Brain, Zap, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
 import { mockCompanyInfo } from '../mock';
 import { submitWaitlistForm } from '../Api';
@@ -102,9 +102,9 @@ export const AIWaitlist = () => {
               </p>
               
               {/* Waitlist Form */}
-              <div className="bg-gray-900/50 backdrop-blur-sm border border-white/10 p-8 mb-8">
-                <h3 className="heading-2 mb-6">Join the Waitlist</h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="bg-gray-900/50 backdrop-blur-sm border border-white/10 p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+                <h3 className="heading-2 mb-4 sm:mb-6">Join the Waitlist</h3>
+                <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
                   <div>
                     <input
                       type="text"
@@ -112,7 +112,7 @@ export const AIWaitlist = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition-colors"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-black/50 border border-white/20 text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition-colors text-sm sm:text-base"
                       placeholder="Your full name"
                     />
                   </div>
@@ -123,7 +123,7 @@ export const AIWaitlist = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition-colors"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-black/50 border border-white/20 text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition-colors text-sm sm:text-base"
                       placeholder="Your email address"
                     />
                   </div>
@@ -132,18 +132,18 @@ export const AIWaitlist = () => {
                       name="interests"
                       value={formData.interests}
                       onChange={handleInputChange}
-                      rows={3}
-                      className="w-full px-4 py-3 bg-black/50 border border-white/20 text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition-colors resize-vertical"
+                      rows={2}
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-black/50 border border-white/20 text-white placeholder-gray-500 focus:border-brand-primary focus:outline-none transition-colors resize-vertical text-sm sm:text-base"
                       placeholder="What passive income opportunities interest you most?"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base py-2 sm:py-3"
                   >
                     {isSubmitting ? 'Joining...' : 'Join the Waitlist'}
-                    <ArrowRight size={20} />
+                    <ArrowRight size={16} className="sm:w-5 sm:h-5" />
                   </button>
                 </form>
               </div>
@@ -169,26 +169,13 @@ export const AIWaitlist = () => {
             </div>
 
             {/* Right - AI 3D Background */}
-            <div className="relative h-[700px] w-full">
-              <div 
-                style={{ 
-                  width: "700px", 
-                  height: "700px", 
-                  overflow: "visible", 
-                  position: "relative",
-                  left: "50%",
-                  transform: "translateX(-50%)"
-                }}
-              >
-                <Spline 
-                  scene="https://prod.spline.design/NbVmy6DPLhY-5Lvg/scene.splinecode"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    filter: "hue-rotate(60deg)"
-                  }}
-                />
-              </div>
+            <div className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full">
+              <ResponsiveSpline
+                scene="https://prod.spline.design/NbVmy6DPLhY-5Lvg/scene.splinecode"
+                fallbackMessage="AI-Powered 3D Animation"
+                hueRotate="60deg"
+                className="w-full h-full"
+              />
             </div>
           </div>
         </div>

@@ -1,16 +1,12 @@
-# Frontend-Backend Connection Bug Fixes
+# Mobile Scrolling Smoothness Fix
 
-## Issues Identified:
-1. ✅ URL Path Mismatch: Contact.jsx posts to `/contact` but backend expects `/api/contact`
-2. ✅ Database Update Issues: Update methods use wrong field for MongoDB queries
-3. ✅ MongoDB Connection Inconsistency: Different URLs in different files
-4. ✅ Duplicate FastAPI Apps: Two different app setups causing confusion
+## Tasks
+- [x] Update App.css to disable smooth scrolling on mobile and add iOS momentum scrolling
+- [x] Throttle scroll handler in Header.jsx to reduce re-render frequency
+- [ ] Test scrolling on mobile after changes
 
-## Fixes to Implement:
-- [ ] Fix Contact.jsx to use correct API endpoint (/api/contact)
-- [ ] Fix database_service.py update methods to use _id field
-- [ ] Update core/db.py with correct MongoDB URL
-- [ ] Clean up duplicate FastAPI app setup
-- [ ] Test frontend-backend connection
+# Footer Cleanup Task
 
-## Status: In Progress
+- [x] Step 1: Edit Footer.jsx to add "Contact" and "CashCue AI Waitlist" links to the Navigation section.
+- [x] Step 2: Edit Footer.jsx to remove the links from the bottom bar and restructure for centering social icons.
+- [ ] Step 3: Verify changes by running the dev server and checking the footer layout.

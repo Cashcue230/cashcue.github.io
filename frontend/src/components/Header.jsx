@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
@@ -6,10 +6,15 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const lastScrollTime = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const now = Date.now();
+      if (now - lastScrollTime.current > 100) {
+        setIsScrolled(window.scrollY > 50);
+        lastScrollTime.current = now;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);

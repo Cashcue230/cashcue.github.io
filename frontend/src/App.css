@@ -253,31 +253,125 @@ body {
   }
 }
 
-/* Responsive Design */
+/* Responsive Design - Mobile Only (Android/iPhone) */
 @media (max-width: 768px) {
   .display-huge {
-    font-size: 48px;
+    font-size: 42px;
+    line-height:1.1;
   }
-  
+
   .display-large {
     font-size: 36px;
   }
-  
+
   .display-medium {
     font-size: 28px;
   }
-  
+
   .dark-grid {
     grid-template-columns: 1fr;
     gap: 40px;
     padding: 40px 20px;
   }
-  
+
   .floating-hire-btn {
     bottom: 20px;
     right: 20px;
     padding: 12px 20px;
     font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+   .display-huge {
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+   }
+}
+/* Social icons - Available on all devices */
+.social-icons-mobile {
+  gap: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure social icons are visible */
+.social-icons-mobile a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+.social-icons-mobile a:hover {
+  transform: scale(1.1);
+}
+
+.social-icons-mobile svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile-specific improvements for Android/iPhone */
+@media (max-width: 640px) {
+  /* Ensure proper touch targets */
+  .btn-primary,
+  .btn-secondary {
+    min-height: 48px;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  /* Better spacing for mobile */
+  .dark-container {
+    padding: 0 16px;
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-nav {
+    padding: 16px;
+  }
+
+  /* Social icons mobile optimization */
+  .social-icons-mobile {
+    gap: 8px;
+    padding: 8px;
+  }
+}
+
+/* Page padding for fixed header */
+.page-padding {
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  .page-padding {
+    padding-top: 60px;
+  }
+}
+
+/* Ensure desktop styles are preserved */
+@media (min-width: 1024px) {
+  .display-huge {
+    font-size: 66px;
+  }
+
+  .display-large {
+    font-size: 48px;
+  }
+
+  .display-medium {
+    font-size: 32px;
+  }
+
+  .dark-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 60px 40px;
+    padding: 60px 0;
   }
 }
 

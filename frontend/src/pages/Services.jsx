@@ -106,12 +106,12 @@ export const Services = () => {
                 );
               })}
             </div>
-          </div>
+         </div>
 
           {/* Process Section */}
           <div className="bg-gray-900/20 border border-white/10 p-12 mb-16">
             <h2 className="display-medium text-center mb-12">Our Process</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
                 {
                   step: "01",
